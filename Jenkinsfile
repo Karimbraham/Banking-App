@@ -10,6 +10,7 @@ pipeline{
         APP_NAME = "banking-api"
         RELEASE = "1.0.0"
         DOCKER_USER = "ihebr"
+        DOCKER_PASS = 'dockerkey'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
@@ -45,11 +46,11 @@ pipeline{
         stage("Build & Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry('','') {
+                    docker.withRegistry('',DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}"
                     }
 
-                    docker.withRegistry('','') {
+                    docker.withRegistry('',DOCKER_PASS) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
