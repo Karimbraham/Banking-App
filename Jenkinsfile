@@ -6,7 +6,13 @@ pipeline{
         jdk 'Java17'
         maven 'Maven3'
     }
-
+    environment {
+        APP_NAME = "banking-api"
+        RELEASE = "1.0.0"
+        DOCKER_USER = "ihebr"
+        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+    }
     stages{
         stage("Cleanup Workspace"){
             steps {
@@ -32,6 +38,22 @@ pipeline{
         stage("Test Application"){
             steps {
                 sh "mvn test"
+            }
+
+        }
+        
+        stage("Build & Push Docker Image") {
+            steps {
+                script {
+                    docker.withRegistry('','') {
+                        docker_image = docker.build "${IMAGE_NAME}"
+                    }
+
+                    docker.withRegistry('','') {
+                        docker_image.push("${IMAGE_TAG}")
+                        docker_image.push('latest')
+                    }
+                }
             }
 
         }
