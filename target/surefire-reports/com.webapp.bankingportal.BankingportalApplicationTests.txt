@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.webapp.bankingportal.BankingportalApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.547 s <<< FAILURE! - in com.webapp.bankingportal.BankingportalApplicationTests
+com.webapp.bankingportal.BankingportalApplicationTests  Time elapsed: 1.543 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+
