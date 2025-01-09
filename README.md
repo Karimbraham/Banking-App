@@ -51,8 +51,8 @@ This is a **Spring Boot** application that provides RESTful API routes for a bas
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/banking-api.git
-   cd banking-api
+   git clone https://github.com/Karimbraham/Banking-App.git
+   cd Banking-App
    ```
 
 2. **Configure the Application**:
